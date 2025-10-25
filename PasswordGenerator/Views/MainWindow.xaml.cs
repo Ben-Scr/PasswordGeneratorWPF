@@ -43,11 +43,11 @@ namespace PasswordGenerator
 
             // Schwellen kannst du anpassen
             if (v < 0.33)
-                bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#D83434")); // rot
+                bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#D83434"));
             else if (v < 0.66)
-                bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E6B325")); // gelb
+                bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E6B325"));
             else
-                bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3CB371")); // grün
+                bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3CB371"));
         }
 
         public void OnSaveToFileButtonClick(object sender, EventArgs args)

@@ -52,18 +52,18 @@
                         <StackPanel Grid.Column="0">
                             <Slider x:Name="passwordLengthSlider"
                       Minimum="1" Maximum="30" TickFrequency="1"
-                      IsSnapToTickEnabled="True"/>
+                      IsSnapToTickEnabled="True" Width="224" HorizontalAlignment="Left" Margin="5,4,0,0"/>
                             <DockPanel Margin="0,6,0,0">
-                                <TextBlock Text="Min: 1" DockPanel.Dock="Left"/>
-                                <TextBlock Text="Max: 30" DockPanel.Dock="Right"/>
+                                <TextBlock Text="Min: 1" DockPanel.Dock="Left" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                                <TextBlock Text="Max: 30" DockPanel.Dock="Right" HorizontalAlignment="Left" Margin="5,0,0,0"/>
                             </DockPanel>
                         </StackPanel>
 
-                        <TextBox Grid.Column="1"
+                        <TextBox
                      x:Name="passwordLengthTxt"
                      Text="1" Width="60"
                      HorizontalContentAlignment="Center"
-                     ToolTip="Gewünschte Passwortlänge" />
+                     ToolTip="Gewünschte Passwortlänge" Grid.ColumnSpan="2" Margin="247,0,6,22" HorizontalAlignment="Right" />
                     </Grid>
                 </GroupBox>
 
@@ -88,10 +88,10 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource Caption}" Text="Include"/>
-                        <TextBox   Grid.Row="0" Grid.Column="1" x:Name="includeCharsTxt"/>
+                        <TextBox   Grid.Row="0" Grid.Column="1" Height="20" x:Name="includeCharsTxt" Margin="5,0,6,0"/>
 
                         <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource Caption}" Text="Exclude"/>
-                        <TextBox   Grid.Row="1" Grid.Column="1" x:Name="excludeCharsTxt"/>
+                        <TextBox   Grid.Row="1" Grid.Column="1" Height="20"  x:Name="excludeCharsTxt" Margin="5,0,6,0"/>
                     </Grid>
                 </GroupBox>
             </StackPanel>
@@ -129,18 +129,18 @@
                         <ProgressBar Grid.Row="0"
                          x:Name="strengthProgressbar"
                          Minimum="0" Maximum="1" Value="0"
-                         ValueChanged="strengthProgressbar_ValueChanged"/>
+                         ValueChanged="strengthProgressbar_ValueChanged" Width="486.848"/>
 
                         <TextBox Grid.Row="2"
                      x:Name="strengthInfoTextbox"
                      IsReadOnly="True"
                      VerticalScrollBarVisibility="Auto"
                      TextWrapping="Wrap" AcceptsReturn="True"
-                     Padding="6"/>
+                     Padding="6" Margin="0,0,0,0"/>
                     </Grid>
                 </GroupBox>
 
-                <GroupBox Header="History">
+                <GroupBox Header="History" Height="106">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="140"/>
@@ -148,9 +148,10 @@
                         </Grid.RowDefinitions>
 
                         <ListBox Grid.Row="0"
+                                 MaxHeight="100"
                      x:Name="passwordHistory"
                      FontFamily="Consolas"
-                     ScrollViewer.VerticalScrollBarVisibility="Auto">
+                     ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="0,0,10,90" Height="50">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
@@ -170,6 +171,7 @@
 
         <DockPanel Grid.Row="2" LastChildFill="False">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+
                 <Button x:Name="generateButton" Content="Generate"/>
                 <Button x:Name="closeButton"    Content="Close"/>
             </StackPanel>
