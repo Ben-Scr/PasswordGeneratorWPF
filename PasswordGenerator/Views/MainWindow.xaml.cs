@@ -24,8 +24,12 @@ namespace PasswordGenerator
         {
             InitializeComponent();
             PasswordUtility.Initialize();
+            InitializeEvents();
+        }
 
-            this.KeyDown += OnKeyDown;
+        private void InitializeEvents()
+        {
+            KeyDown += OnKeyDown;
             passwordLengthSlider.ValueChanged += OnPasswordLengthSliderValueChanged;
             passwordLengthTxt.TextChanged += OnPasswordLengthTextChanged;
             generateButton.Click += OnClickGenerateButton;

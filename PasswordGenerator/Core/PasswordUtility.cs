@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -43,14 +44,14 @@ namespace PasswordGenerator
 
     public static class PasswordUtility
     {
-        private static string[] mostCommonPasswords;
+        private static string[] passwords;
         private static string[] names;
 
         public static void Initialize()
         {
             Task.Run(() =>
             {
-                mostCommonPasswords = File.ReadAllLines("Resources/Passwords.txt");
+                passwords = File.ReadAllLines("Resources/Passwords.txt");
                 names = File.ReadAllLines("Resources/Names.txt");
             });
         }
@@ -201,7 +202,7 @@ namespace PasswordGenerator
 
             bool containsName = names.Contains(password, StringComparer.OrdinalIgnoreCase);
 
-            if (mostCommonPasswords.Contains(password.ToLower()))
+            if (passwords.Contains(password.ToLower()))
             {
                 return "is one of the most common passwords" + (containsName ? " and contains a name" : "");
             }
