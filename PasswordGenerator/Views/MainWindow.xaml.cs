@@ -36,6 +36,20 @@ namespace PasswordGenerator
             saveToFileButton.Click += OnSaveToFileButtonClick;
         }
 
+        private void strengthProgressbar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            var bar = (ProgressBar)sender;
+            double v = bar.Value; // 0..1
+
+            // Schwellen kannst du anpassen
+            if (v < 0.33)
+                bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#D83434")); // rot
+            else if (v < 0.66)
+                bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E6B325")); // gelb
+            else
+                bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3CB371")); // grün
+        }
+
         public void OnSaveToFileButtonClick(object sender, EventArgs args)
         {
             string[] passwords = new string[passwordHistory.Items.Count];
