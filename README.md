@@ -1,4 +1,9 @@
-# PasswordGenerator
+# Advanced C# WPF Password Generator
 
 ## Screenshot
-<img src="Docs/Screenshot1" width="20%" algin="center" alt="Screenshot 1">
+<p align="center">
+<img src="Docs/Screenshot1.png" width="45%" alt="Screenshot 1">
+<img src="Docs/Screenshot2.png" width="45%" alt="Screenshot 2">
+<img src="Docs/Screenshot3.png" width="45%" alt="Screenshot 3">
+<img src="Docs/Screenshot4.png" width="45%" alt="Screenshot 4">
+</p>
