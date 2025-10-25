@@ -142,6 +142,9 @@
 
                 <GroupBox Header="History" Height="106">
                     <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="140"/>
                             <RowDefinition Height="Auto"/>
@@ -159,7 +162,7 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
 
-                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,100,0,100">
                             <Button x:Name="btnCopySelected"   Content="Copy Selection" IsEnabled="False"/>
                             <Button x:Name="clearHistoryButton" Content="Clear History"/>
                             <Button x:Name="saveToFileButton"   Content="Save To File"/>
