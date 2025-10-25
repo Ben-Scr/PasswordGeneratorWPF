@@ -50,8 +50,8 @@ namespace PasswordGenerator
         {
             Task.Run(() =>
             {
-                mostCommonPasswords = File.ReadAllLines("Passwords.txt");
-                names = File.ReadAllLines("Names.txt");
+                mostCommonPasswords = File.ReadAllLines("Resources/Passwords.txt");
+                names = File.ReadAllLines("Resources/Names.txt");
             });
         }
 

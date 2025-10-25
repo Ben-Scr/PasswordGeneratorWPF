@@ -25,6 +25,7 @@ namespace PasswordGenerator
             InitializeComponent();
             PasswordUtility.Initialize();
 
+            this.KeyDown += OnKeyDown;
             passwordLengthSlider.ValueChanged += OnPasswordLengthSliderValueChanged;
             passwordLengthTxt.TextChanged += OnPasswordLengthTextChanged;
             generateButton.Click += OnClickGenerateButton;
@@ -36,12 +37,28 @@ namespace PasswordGenerator
             saveToFileButton.Click += OnSaveToFileButtonClick;
         }
 
-        private void strengthProgressbar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.F5)
+            {
+                GenerateNewPassword();
+            }
+
+            if(e.Key == Key.Left)
+            {
+                passwordLengthSlider.Value--;
+            }
+            if (e.Key == Key.Right)
+            {
+                passwordLengthSlider.Value++;
+            }
+        }
+
+        private void OnStrengthProgressbarValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             var bar = (ProgressBar)sender;
-            double v = bar.Value; // 0..1
+            double v = bar.Value;
 
-            // Schwellen kannst du anpassen
             if (v < 0.33)
                 bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#D83434"));
             else if (v < 0.66)
@@ -50,7 +67,7 @@ namespace PasswordGenerator
                 bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3CB371"));
         }
 
-        public void OnSaveToFileButtonClick(object sender, EventArgs args)
+        private void OnSaveToFileButtonClick(object sender, EventArgs args)
         {
             string[] passwords = new string[passwordHistory.Items.Count];
 
@@ -68,7 +85,7 @@ namespace PasswordGenerator
             Process.Start("explorer.exe", mainPath);
         }
 
-        public void OnPasswordTextChanged(object sender, EventArgs args)
+        private void OnPasswordTextChanged(object sender, EventArgs args)
         {
             string password = passwordTxt.Text;
 
@@ -84,14 +101,14 @@ namespace PasswordGenerator
             strengthInfoTextbox.Text = GetStrengthInfo(password);
         }
 
-        public void OnClickAddButton(object sender, EventArgs args)
+        private void OnClickAddButton(object sender, EventArgs args)
         {
             string password = passwordTxt.Text;
             if (string.IsNullOrEmpty(password) || passwordHistory.Items.Contains(password)) return;
             passwordHistory.Items.Add(password);
         }
 
-        public void OnClickCloseButton(object sender, EventArgs args)
+        private void OnClickCloseButton(object sender, EventArgs args)
         {
             MessageBoxResult result = MessageBox.Show(
             "Are you sure that you want to quit?",
@@ -106,12 +123,12 @@ namespace PasswordGenerator
             }
         }
 
-        public void OnClickClearHistoryButton(object sender, EventArgs args)
+        private void OnClickClearHistoryButton(object sender, EventArgs args)
         {
             passwordHistory.Items.Clear();
         }
 
-        public void OnClickCopyButton(object sender, EventArgs args)
+        private void OnClickCopyButton(object sender, EventArgs args)
         {
             string psw = passwordTxt.Text;
 
@@ -121,12 +138,12 @@ namespace PasswordGenerator
             MessageBox.Show($"Copied \"{psw}\" to the clipboard");
         }
 
-        public void OnPasswordLengthSliderValueChanged(object sender, EventArgs args)
+        private void OnPasswordLengthSliderValueChanged(object sender, EventArgs args)
         {
             passwordLengthTxt.Text = passwordLengthSlider.Value.ToString();
         }
 
-        public void OnPasswordLengthTextChanged(object sender, EventArgs args)
+        private void OnPasswordLengthTextChanged(object sender, EventArgs args)
         {
             if (int.TryParse(passwordLengthTxt.Text, out int length))
             {
@@ -141,7 +158,7 @@ namespace PasswordGenerator
             }
         }
 
-        public string GetStrengthInfo(string password)
+        private string GetStrengthInfo(string password)
         {
             BigInteger combinations = PasswordUtility.PossibleCombinations(password);
             string classification = "The password " + PasswordUtility.ClassifyPassword(password)+ ".";
@@ -149,7 +166,12 @@ namespace PasswordGenerator
             return classification + info;
         }
 
-        public void OnClickGenerateButton(object sender, EventArgs args)
+        private void OnClickGenerateButton(object sender, EventArgs args)
+        {
+            GenerateNewPassword();
+        }
+
+        private void GenerateNewPassword()
         {
             int pswLength = (int)passwordLengthSlider.Value;
 

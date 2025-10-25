@@ -15,8 +15,8 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Themes/Colors.xaml" />
-                <ResourceDictionary Source="../Themes/Controls.xaml" />
+                <ResourceDictionary Source="../Resources/Colors.xaml" />
+                <ResourceDictionary Source="../Resources/Controls.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -63,7 +63,7 @@
                      x:Name="passwordLengthTxt"
                      Text="1" Width="60"
                      HorizontalContentAlignment="Center"
-                     ToolTip="Gewünschte Passwortlänge" Grid.ColumnSpan="2" Margin="247,0,6,22" HorizontalAlignment="Right" />
+                     ToolTip="Password length" Grid.ColumnSpan="2" Margin="247,0,6,22" HorizontalAlignment="Right" />
                     </Grid>
                 </GroupBox>
 
@@ -96,7 +96,7 @@
                 </GroupBox>
             </StackPanel>
 
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.ColumnSpan="2" Margin="347,0,0,-34">
                 <GroupBox Header="Generated Password">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -106,6 +106,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBox Grid.Column="0" x:Name="passwordTxt"
+                     MaxLength="1000"
                      MinWidth="200"
                      HorizontalScrollBarVisibility="Auto"
                      FontFamily="Consolas" FontSize="16"
@@ -129,7 +130,7 @@
                         <ProgressBar Grid.Row="0"
                          x:Name="strengthProgressbar"
                          Minimum="0" Maximum="1" Value="0"
-                         ValueChanged="strengthProgressbar_ValueChanged" Width="486.848"/>
+                         ValueChanged="OnStrengthProgressbarValueChanged" Width="486.848"/>
 
                         <TextBox Grid.Row="2"
                      x:Name="strengthInfoTextbox"
@@ -140,21 +141,17 @@
                     </Grid>
                 </GroupBox>
 
-                <GroupBox Header="History" Height="106">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
+                <GroupBox Header="History" Height="172">
+                    <Grid Height="122">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="140"/>
+                            <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <ListBox Grid.Row="0"
-                                 MaxHeight="100"
                      x:Name="passwordHistory"
                      FontFamily="Consolas"
-                     ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="0,0,10,90" Height="50">
+                     ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="0,0,10,0" Height="54" VerticalAlignment="Top">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
@@ -162,10 +159,9 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
 
-                        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,100,0,100">
-                            <Button x:Name="btnCopySelected"   Content="Copy Selection" IsEnabled="False"/>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,65,10,15">
                             <Button x:Name="clearHistoryButton" Content="Clear History"/>
-                            <Button x:Name="saveToFileButton"   Content="Save To File"/>
+                            <Button x:Name="saveToFileButton"  ToolTip="Saves the history into a .txt file"   Content="Save To File"/>
                         </StackPanel>
                     </Grid>
                 </GroupBox>
@@ -173,10 +169,10 @@
         </Grid>
 
         <DockPanel Grid.Row="2" LastChildFill="False">
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
 
-                <Button x:Name="generateButton" Content="Generate"/>
-                <Button x:Name="closeButton"    Content="Close"/>
+                <Button x:Name="generateButton" Padding="15" Content="Generate"/>
+                <Button x:Name="closeButton"  Padding="15" Content="Close"/>
             </StackPanel>
         </DockPanel>
     </Grid>
