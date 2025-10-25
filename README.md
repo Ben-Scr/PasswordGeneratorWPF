@@ -1,4 +1,5 @@
 # Advanced C# WPF Password Generator
+An Advanced C# Password Generator for Windows.
 
 ## Functionality
 - Generating Save Passwords
