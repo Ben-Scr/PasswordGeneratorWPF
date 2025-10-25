@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="SurfaceBrush" Color="#FFF7F7F7"/>
+    <SolidColorBrush x:Key="BorderBrushLight" Color="#FFE0E0E0"/>
+    <SolidColorBrush x:Key="TextSubtleBrush" Color="#777777"/>
+
+    <Color x:Key="AccentRed">#D83434</Color>
+    <Color x:Key="AccentYellow">#E6B325</Color>
+    <Color x:Key="AccentGreen">#3CB371</Color>
+
+    <SolidColorBrush x:Key="AccentBrush" Color="#FF357ABD"/>
+    <SolidColorBrush x:Key="ButtonHoverBrush" Color="#FFD6EAF8"/>
+
+    <LinearGradientBrush x:Key="StrengthGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="{StaticResource AccentRed}" Offset="0.0"/>
+        <GradientStop Color="{StaticResource AccentYellow}" Offset="0.5"/>
+        <GradientStop Color="{StaticResource AccentGreen}" Offset="1.0"/>
+    </LinearGradientBrush>
+
+</ResourceDictionary>
