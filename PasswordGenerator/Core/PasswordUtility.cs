@@ -290,7 +290,7 @@ namespace PasswordGenerator
         {
             if (charsetLength <= 1 || passwordLength <= 0) return 0f;
 
-            double bits = passwordLength * Math.Log(charsetLength, 2.0); // exakt genug
+            double bits = passwordLength * Math.Log(charsetLength, 2.0);
             float strength = (float)(bits / targetBits);
             return Math.Clamp(strength, 0f, 1f);
         }

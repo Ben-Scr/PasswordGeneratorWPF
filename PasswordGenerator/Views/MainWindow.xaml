@@ -172,11 +172,11 @@
             </StackPanel>
         </Grid>
 
-        <DockPanel Grid.Row="1" LastChildFill="False" Grid.ColumnSpan="2" Margin="0,365,0,0" Grid.RowSpan="2">
+        <DockPanel Grid.Row="0" LastChildFill="False" Grid.ColumnSpan="2" Margin="0,365,0,0" Grid.RowSpan="2">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
 
-                <Button x:Name="generateButton" Padding="15" Content="Generate"/>
-                <Button x:Name="closeButton"  Padding="15" Content="Close"/>
+                <Button x:Name="generateButton" Padding="15" Content="Generate" Margin="6,15,0,15"/>
+                <Button x:Name="closeButton"  Padding="15" Content="Close" Margin="6,15,0,15"/>
             </StackPanel>
         </DockPanel>
     </Grid>
