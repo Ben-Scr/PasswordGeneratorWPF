@@ -44,18 +44,12 @@ namespace PasswordGenerator
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.F5)
-            {
                 GenerateNewPassword();
-            }
 
-            if(e.Key == Key.Left)
-            {
+            else if(e.Key == Key.Left)
                 passwordLengthSlider.Value--;
-            }
-            if (e.Key == Key.Right)
-            {
+            else if(e.Key == Key.Right)
                 passwordLengthSlider.Value++;
-            }
         }
 
         private void OnStrengthProgressbarValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -77,13 +71,14 @@ namespace PasswordGenerator
 
             if (passwords.Length == 0) return;
 
-            for(int i = 0; i < passwordHistory.Items.Count; i++)
+            for(int i = 0; i < passwords.Length; i++)
             {
                 passwords[i] = passwordHistory.Items[i].ToString();
             }
 
             string mainPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PasswordManager", "Passwords");
             string filename = $"{passwords.Length} {(passwords.Length == 1 ? "Item" : "Items")} long password history from {DateTime.Now.ToString().Replace(":", "-")}.txt";
+
             Directory.CreateDirectory(mainPath);
             File.WriteAllLines(System.IO.Path.Combine(mainPath, filename), passwords);
             Process.Start("explorer.exe", mainPath);

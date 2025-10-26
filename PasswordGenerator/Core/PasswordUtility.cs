@@ -234,7 +234,7 @@ namespace PasswordGenerator
             else if (strength <= 0.9f) return "is Extreme Safe";
             else if (strength > 0.9f) return "is Ultra Safe";
 
-            return "No classification found";
+            return "No classification matches";
         }
 
         public static BigInteger PossibleCombinations(int passwordLength, int charsetLength)
@@ -281,18 +281,8 @@ namespace PasswordGenerator
                 return 0f;
 
             double bits = BigInteger.Log(combinations, 2);
-            MessageBox.Show(bits.ToString());
             float strength = (float)(bits / targetBits);
             return Math.Clamp(strength, 0.0f, 1.0f);
-        }
-
-        public static float GetPasswordStrength(int charsetLength, int passwordLength, double targetBits = 128.0)
-        {
-            if (charsetLength <= 1 || passwordLength <= 0) return 0f;
-
-            double bits = passwordLength * Math.Log(charsetLength, 2.0);
-            float strength = (float)(bits / targetBits);
-            return Math.Clamp(strength, 0f, 1f);
         }
     }
 }
