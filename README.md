@@ -1,8 +1,8 @@
 # Advanced C# WPF Password Generator
 An Advanced C# Password Generator for Windows.
 
-## Functionality
-- Generating Save Passwords
+## Usage
+- Generating Safe Passwords
 - Auto-detecting common passwords and names
 - Password safety rating
 - Saving multiple passwords into a text file locally
