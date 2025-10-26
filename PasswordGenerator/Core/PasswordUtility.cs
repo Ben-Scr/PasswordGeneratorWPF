@@ -213,28 +213,32 @@ namespace PasswordGenerator
 
             int differentChars = DifferentCharsCount(password);
 
-            if (differentChars <= 2)
+            if(password.Length < 12)
             {
-                return "is very weak since it follows a very simple pattern";
+                if (differentChars <= 2)
+                {
+                    return "is very weak since it follows a very simple pattern";
+                }
+                else if (differentChars <= 3)
+                {
+                    return "is weak since it follows a very simple pattern";
+                }
             }
-            else if (differentChars <= 3)
-            {
-                return "is weak since it follows a very simple pattern";
-            }
+
 
 
             if (strength < 0.1f) return "is Very Weak";
             else if (strength < 0.2f) return "is Weak";
             else if (strength < 0.3f) return "is Bad";
-            else if (strength < 0.4f) return "is Not Good";
-            else if (strength < 0.5f) return "is Medium";
-            else if (strength < 0.6f) return "is Okay";
-            else if (strength < 0.7f) return "is Safe";
-            else if (strength < 0.8f) return "is Very Safe";
+            else if (strength < 0.4f) return "is Not Safe";
+            else if (strength < 0.5f) return "is Medium Safe";
+            else if (strength < 0.6f) return "is Safe";
+            else if (strength < 0.7f) return "is Very Safe";
+            else if (strength < 0.8f) return "is Very Very Safe";
             else if (strength <= 0.9f) return "is Extreme Safe";
             else if (strength > 0.9f) return "is Ultra Safe";
 
-            return "No classification matches";
+            return "No classification found";
         }
 
         public static BigInteger PossibleCombinations(int passwordLength, int charsetLength)
@@ -274,15 +278,15 @@ namespace PasswordGenerator
         // Returns a value from 0 to 1 defining the strength of the Password 0 = Low Strength 1 = High Strength
         public static float GetPasswordStrength(string password)
             => GetPasswordStrength(PasswordGen.CalculateCharsetLength(password), password.Length);
-
-        public static float GetPasswordStrength(BigInteger combinations, float targetBits = 128.0f)
+ 
+        public static float GetPasswordStrength(int charsetLength, int passwordLength, double targetBits = 128.0)
         {
-            if (combinations <= 1)
-                return 0f;
+            if (charsetLength <= 1 || passwordLength <= 0) return 0f;
 
-            double bits = BigInteger.Log(combinations, 2);
+            double bits = passwordLength * Math.Log(charsetLength, 2.0);
             float strength = (float)(bits / targetBits);
-            return Math.Clamp(strength, 0.0f, 1.0f);
+            return Math.Clamp(strength, 0f, 1f);
         }
+
     }
 }

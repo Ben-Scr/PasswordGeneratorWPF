@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Passwort-Generator"
         Height="500" Width="900"
-        MinHeight="480" MinWidth="760"
+        MinHeight="500" MinWidth="760"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
+        ResizeMode="CanResize"
         Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Icon="/Views/icon.png">
 
     <Window.Resources>
@@ -45,29 +45,36 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0">
+            <StackPanel Grid.Column="0" Margin="0,0,12,0">
                 <GroupBox Header="Length">
                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0">
-                            <Slider x:Name="passwordLengthSlider"
-                      Minimum="1" Maximum="30" TickFrequency="1"
-                      IsSnapToTickEnabled="True" Width="224" HorizontalAlignment="Left" Margin="5,4,0,0"/>
-                            <DockPanel Margin="0,6,0,0">
-                                <TextBlock Text="Min: 1" DockPanel.Dock="Left" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-                                <TextBlock Text="Max: 30" DockPanel.Dock="Right" HorizontalAlignment="Left" Margin="5,0,0,0"/>
-                            </DockPanel>
-                        </StackPanel>
+                        <Slider Grid.Row="0" Grid.Column="0"
+                                x:Name="passwordLengthSlider"
+                                Minimum="1" Maximum="30" TickFrequency="1"
+                                IsSnapToTickEnabled="True"
+                                Margin="5,10,10,5"/>
 
-                        <TextBox
-                     x:Name="passwordLengthTxt"
-                     Text="1" Width="60"
-                     HorizontalContentAlignment="Center"
-                     ToolTip="Password length" Grid.ColumnSpan="2" Margin="247,0,6,22" HorizontalAlignment="Right" />
+                        <TextBox Grid.Row="0" Grid.Column="1"
+                                 x:Name="passwordLengthTxt"
+                                 Text="1"
+                                 Width="60"
+                                 HorizontalContentAlignment="Center"
+                                 ToolTip="Password length"
+                                 Margin="0,4,6,0"/>
+
+                        <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,6,0,0">
+                            <TextBlock Text="Min: 1" DockPanel.Dock="Left" Margin="0,0,10,0"/>
+                            <TextBlock Text="Max: 30" DockPanel.Dock="Right"/>
+                        </DockPanel>
                     </Grid>
                 </GroupBox>
 
@@ -100,7 +107,7 @@
                 </GroupBox>
             </StackPanel>
 
-            <StackPanel Grid.ColumnSpan="2" Margin="347,0,0,-34">
+            <StackPanel Grid.ColumnSpan="2" Margin="347,0,0,-54">
                 <GroupBox Header="Generated Password">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -116,7 +123,8 @@
                      FontFamily="Consolas" FontSize="16"
                      IsReadOnly="False"
                      VerticalContentAlignment="Center"
-                     ToolTip="Current Generated Password"/>
+                     ToolTip="Current Generated Password"
+                     Margin="0,0,6,0"/>
 
                         <Button Grid.Column="1" x:Name="copyButton" Content="Copy"/>
                         <Button Grid.Column="2" x:Name="addButton"  Content="Add"/>
@@ -134,7 +142,8 @@
                         <ProgressBar Grid.Row="0"
                          x:Name="strengthProgressbar"
                          Minimum="0" Maximum="1" Value="0"
-                         ValueChanged="OnStrengthProgressbarValueChanged" Width="486.848"/>
+                         ValueChanged="OnStrengthProgressbarValueChanged"
+                         Margin="0,0,0,8"/>
 
                         <TextBox Grid.Row="2"
                      x:Name="strengthInfoTextbox"
@@ -145,8 +154,8 @@
                     </Grid>
                 </GroupBox>
 
-                <GroupBox Header="History" Height="172">
-                    <Grid Height="122">
+                <GroupBox Header="History" Height="118">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
@@ -155,7 +164,8 @@
                         <ListBox Grid.Row="0"
                      x:Name="passwordHistory"
                      FontFamily="Consolas"
-                     ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="0,0,10,0" Height="54" VerticalAlignment="Top">
+                                 Height="25"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="0,0,10,0">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
@@ -163,7 +173,7 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
 
-                        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,65,10,15">
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,10,0">
                             <Button x:Name="clearHistoryButton" Content="Clear History"/>
                             <Button x:Name="saveToFileButton"  ToolTip="Saves the history into a .txt file"   Content="Save To File"/>
                         </StackPanel>
@@ -172,12 +182,12 @@
             </StackPanel>
         </Grid>
 
-        <DockPanel Grid.Row="0" LastChildFill="False" Grid.ColumnSpan="2" Margin="0,365,0,0" Grid.RowSpan="2">
+        <DockPanel Grid.Row="2" Grid.ColumnSpan="2" LastChildFill="False" Margin="0,12,0,0">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-
-                <Button x:Name="generateButton" Padding="15" Content="Generate" Margin="6,15,0,15"/>
-                <Button x:Name="closeButton"  Padding="15" Content="Close" Margin="6,15,0,15"/>
+                <Button x:Name="generateButton" Padding="15" Content="Generate" Margin="0,0,6,0"/>
+                <Button x:Name="closeButton"  Padding="15" Content="Close"/>
             </StackPanel>
         </DockPanel>
     </Grid>
 </Window>
+
