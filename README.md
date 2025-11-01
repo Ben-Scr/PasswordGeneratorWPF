@@ -15,6 +15,9 @@ An Advanced C# Password Generator for Windows.
 <img src="Docs/Screenshot4.png" width="45%" alt="Screenshot 4">
 </p>
 
+## Example Project
+An example Project using this PasswordGenerator is [`PasswordGeneratorWPF`](https://github.com/Ben-Scr/PasswordGeneratorWPF)
+
 ## Support
 [![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/benscr)
 [![Linktree](https://img.shields.io/badge/Linktree-00C853?style=for-the-badge&logo=linktree&logoColor=white)](https://linktr.ee/benscr)
