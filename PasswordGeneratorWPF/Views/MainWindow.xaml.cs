@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using BenScr.Security;
+using System.Diagnostics;
 using System.IO;
 using System.Numerics;
 using System.Runtime.InteropServices;
@@ -13,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PasswordGenerator
+namespace BenScr.PasswordGeneratorWPF
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -172,15 +173,15 @@ namespace PasswordGenerator
 
         private void GenerateNewPassword()
         {
-            int pswLength = (int)passwordLengthSlider.Value;
+            int pwdLength = (int)passwordLengthSlider.Value;
 
             bool upperCase = upperCaseCheckbox.IsChecked ?? false;
             bool lowerCase = lowerCaseCheckbox.IsChecked ?? false;
             bool digits = digitCheckbox.IsChecked ?? false;
             bool specialChars = specialCharsCheckbox.IsChecked ?? false;
 
-            string charset = PasswordGen.GenerateCharset(upperCase, lowerCase, digits, specialChars, includeCharsTxt.Text, excludeCharsTxt.Text);
-            string generatedPassword = PasswordGen.Generate(pswLength, charset);
+            Password pwd = new Password(pwdLength, upperCase, lowerCase, digits, specialChars, includeCharsTxt.Text, excludeCharsTxt.Text);
+            string generatedPassword = pwd.Next();
             passwordTxt.Text = generatedPassword;
         }
 
