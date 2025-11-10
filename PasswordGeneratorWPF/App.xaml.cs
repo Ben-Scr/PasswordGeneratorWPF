@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace PasswordGenerator
+namespace PasswordGeneratorWPF
 {
     /// <summary>
     /// Interaction logic for App.xaml
