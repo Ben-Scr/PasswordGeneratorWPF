@@ -63,6 +63,18 @@ namespace PasswordGenerator
                 bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#E6B325"));
             else
                 bar.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3CB371"));
+
+            bar.Foreground = new SolidColorBrush(Lerp((Color)ColorConverter.ConvertFromString("#D83434"), (Color)ColorConverter.ConvertFromString("#3CB371"), (float)v));
+        }
+
+        private Color Lerp(Color a, Color b, float t)
+        {
+            Color c = new Color();
+            c.R = (byte)(a.R + (b.R- a.R) * t);
+            c.G = (byte)(a.G + (b.G - a.G) *t);
+            c.B = (byte)(a.B + (b.B - a.B) *t);
+            c.A = 255;
+            return c;
         }
 
         private void OnSaveToFileButtonClick(object sender, EventArgs args)
