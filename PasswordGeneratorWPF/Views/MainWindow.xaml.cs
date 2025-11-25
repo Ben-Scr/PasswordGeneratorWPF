@@ -89,7 +89,7 @@ namespace BenScr.PasswordGeneratorWPF
                 passwords[i] = passwordHistory.Items[i].ToString();
             }
 
-            string mainPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PasswordManager", "Passwords");
+            string mainPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"BenScr", "PasswordManager");
             string filename = $"{passwords.Length} {(passwords.Length == 1 ? "Item" : "Items")} long password history from {DateTime.Now.ToString().Replace(":", "-")}.txt";
 
             Directory.CreateDirectory(mainPath);
