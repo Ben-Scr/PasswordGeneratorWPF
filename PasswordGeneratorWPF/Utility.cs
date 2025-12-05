@@ -7,7 +7,7 @@ namespace BenScr
 {
     internal static class Utility
     {
-        static readonly string MainPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "PasswordManager", "Passwords");
+        static readonly string MainDirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "BenScr", "PasswordManager");
 
         public static string GetStrengthInfo(string password)
         {
@@ -17,14 +17,17 @@ namespace BenScr
             return classification + info;
         }
 
+        public static string GetFilePath()
+        {
+            string filename = $"PASSWORDS-{DateTime.Now.ToString().Replace(":", "-")}.txt";
+            return Path.Combine(MainDirPath, filename);
+        }
+
         public static void SavePasswordHistory(string[] passwords)
         {
-
-            string filename = $"{passwords.Length} {(passwords.Length == 1 ? "Item" : "Items")} long password history from {DateTime.Now.ToString().Replace(":", "-")}.txt";
-
-            Directory.CreateDirectory(MainPath);
-            File.WriteAllLines(System.IO.Path.Combine(MainPath, filename), passwords);
-            Process.Start("explorer.exe", MainPath);
+            Directory.CreateDirectory(MainDirPath);
+            File.WriteAllLines(GetFilePath(), passwords);
+            Process.Start("explorer.exe", MainDirPath);
         }
     }
 }
