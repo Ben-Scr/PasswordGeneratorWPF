@@ -204,8 +204,55 @@
         <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
     </Style>
-    
-    
+
+    <Style x:Key="ScrollBarThumb" TargetType="Thumb">
+        <Setter Property="Background" Value="#6E7681"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="4"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#8B949E"/>
+            </Trigger>
+            <Trigger Property="IsDragging" Value="True">
+                <Setter Property="Background" Value="#A5B1BD"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="ScrollBar">
+        <Setter Property="Background" Value="#0D1117"/>
+        <Setter Property="Width" Value="10"/>
+        <Setter Property="Height" Value="10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollBar">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Track x:Name="PART_Track"
+                               Maximum="{TemplateBinding Maximum}"
+                               Minimum="{TemplateBinding Minimum}"
+                               Value="{TemplateBinding Value}"
+                               ViewportSize="{TemplateBinding ViewportSize}">
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Background="Transparent" BorderThickness="0" Opacity="0"/>
+                            </Track.DecreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource ScrollBarThumb}" Margin="1"/>
+                            </Track.Thumb>
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Background="Transparent" BorderThickness="0" Opacity="0"/>
+                            </Track.IncreaseRepeatButton>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
     <Style TargetType="ProgressBar">
         <Setter Property="Height" Value="16"/>
@@ -218,6 +265,8 @@
     <Style TargetType="ListBox">
         <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
         <Setter Property="Background" Value="{StaticResource Background.Default}"/>
         <Setter Property="Foreground" Value="{StaticResource Foreground.Primary}"/>
     </Style>
