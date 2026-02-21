@@ -37,8 +37,6 @@ namespace BenScr.PasswordGeneratorWPF
             generateButton.Click += OnClickGenerateButton;
             copyButton.Click += OnClickCopyButton;
             clearHistoryButton.Click += OnClickClearHistoryButton;
-            closeButton.Click += OnClickCloseButton;
-            addButton.Click += OnClickAddButton;
             saveCurrentToHistoryButton.Click += OnClickAddButton;
             passwordTxt.TextChanged += OnPasswordTextChanged;
             saveToFileButton.Click += OnSaveToFileButtonClick;
@@ -113,21 +111,6 @@ namespace BenScr.PasswordGeneratorWPF
             string password = passwordTxt.Text;
             if (string.IsNullOrEmpty(password) || passwordHistory.Items.Contains(password)) return;
             passwordHistory.Items.Add(password);
-        }
-
-        private void OnClickCloseButton(object sender, EventArgs args)
-        {
-            MessageBoxResult result = MessageBox.Show(
-            "Are you sure that you want to quit?",
-            "Confirmation",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question
-            );
-
-            if (result == MessageBoxResult.Yes)
-            {
-                Environment.Exit(0);
-            }
         }
 
         private void OnClickClearHistoryButton(object sender, EventArgs args)

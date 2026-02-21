@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PasswordGeneratorWPF"
                 xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
         mc:Ignorable="d"
+                xmlns:controls="clr-namespace:PasswordGeneratorWPF.Views.Controls"
         Title="Passwort-Generator"
         Height="550" Width="900"
         MinHeight="550" MinWidth="760"
@@ -43,8 +44,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+
+            <controls:TitleBar Grid.Row="0" Margin="0 -10 0 0"/>
 
             <TextBlock Grid.Row="0"
                    Text="Passwort-Generator"
@@ -124,7 +126,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="300"/>
                     </Grid.RowDefinitions>
 
                     <GroupBox Grid.Row="0" Header="Generated Password">
@@ -146,8 +148,7 @@
                                  ToolTip="Current Generated Password"
                                  Margin="0,0,6,0"/>
 
-                            <Button Grid.Column="1" x:Name="copyButton" Content="Copy"/>
-                            <Button Grid.Column="2" x:Name="addButton" Content="Save" ToolTip="Save password to history"/>
+                            <Button Grid.Column="1" x:Name="copyButton" Content="Copy" ToolTip="Copy password to the clipboard"/>
                         </Grid>
                     </GroupBox>
 
@@ -161,12 +162,16 @@
                             <ProgressBar Grid.Row="0"
                                      x:Name="strengthProgressbar"
                                      Minimum="0" Maximum="1" Value="0"
+                                     MaxHeight="25" MinHeight="25"
                                      ValueChanged="OnStrengthProgressbarValueChanged"
                                      Margin="0,0,0,8"/>
 
                             <TextBox Grid.Row="1"
                                  Style="{StaticResource DefaultTextBox}"
                                  x:Name="strengthInfoTextbox"
+                                 Text="No password"
+                                 MinHeight="45"
+                                 MaxHeight="45"
                                  IsReadOnly="True"
                                  VerticalScrollBarVisibility="Auto"
                                  TextWrapping="Wrap"
@@ -175,7 +180,7 @@
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Grid.Row="2" Header="Password History" Margin="0">
+                    <GroupBox Grid.Row="2" Header="Password History" Height="200"  Margin="0,0,0,45">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -183,32 +188,31 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <Button Grid.Row="0"
-                                    x:Name="saveCurrentToHistoryButton"
-                                    Content="Save current password"
-                                    ToolTip="Adds the generated password to the history"
-                                    HorizontalAlignment="Left"
-                                    Margin="0,0,0,8"/>
+                            <StackPanel Grid.Row="0" Grid.Column="0" Margin="0 0 0 5" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Button
+        x:Name="saveCurrentToHistoryButton"
+        Content="Save current password"
+        ToolTip="Adds the generated password to the history"
+        HorizontalAlignment="Left"
+        Margin="5 0"/>
+                                <Button Margin="5 0 "  x:Name="clearHistoryButton" Content="Clear History"/>
+                                <Button x:Name="saveToFileButton" ToolTip="Saves the history into a .txt file" Content="Save To File"/>
+                            </StackPanel>
 
                             <ListBox Grid.Row="1"
                                      x:Name="passwordHistory"
                                      FontFamily="Consolas"
                                      ScrollViewer.VerticalScrollBarVisibility="Auto"
                                      ScrollViewer.CanContentScroll="True"
-                                     MinHeight="190"/>
-
-                            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
-                                <Button x:Name="clearHistoryButton" Content="Clear History"/>
-                                <Button x:Name="saveToFileButton" ToolTip="Saves the history into a .txt file" Content="Save To File"/>
-                            </StackPanel>
+                                     MinHeight="100"
+                                     MaxHeight="100" Grid.ColumnSpan="2" Margin="0,0,0,42" Grid.RowSpan="2"/>
                         </Grid>
                     </GroupBox>
                 </Grid>
             </Grid>
 
-            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,12,0,0">
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 0 0 0" Height="50" VerticalAlignment="Bottom">
                 <Button x:Name="generateButton" Style="{StaticResource PrimaryButton}" Padding="15" Content="Generate" Margin="0,0,6,0"/>
-                <Button x:Name="closeButton" Padding="15" Content="Close"/>
             </StackPanel>
         </Grid>
     </Border>
