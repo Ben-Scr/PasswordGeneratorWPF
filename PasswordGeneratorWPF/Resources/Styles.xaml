@@ -290,24 +290,31 @@
                 <ControlTemplate TargetType="ScrollBar">
                     <Grid Background="{TemplateBinding Background}">
                         <Track x:Name="PART_Track"
-                               Maximum="{TemplateBinding Maximum}"
-                               Minimum="{TemplateBinding Minimum}"
-                               Value="{TemplateBinding Value}"
-                               ViewportSize="{TemplateBinding ViewportSize}">
+                           Maximum="{TemplateBinding Maximum}"
+                           Minimum="{TemplateBinding Minimum}"
+                           Value="{TemplateBinding Value}"
+                           ViewportSize="{TemplateBinding ViewportSize}">
                             <Track.DecreaseRepeatButton>
-                                <RepeatButton Background="Transparent" BorderThickness="0" Opacity="0"/>
+                                <RepeatButton x:Name="DecreaseButton" Background="Transparent" BorderThickness="0" Opacity="0"/>
                             </Track.DecreaseRepeatButton>
                             <Track.Thumb>
                                 <Thumb Style="{StaticResource ScrollBarThumb}" Margin="1"/>
                             </Track.Thumb>
                             <Track.IncreaseRepeatButton>
-                                <RepeatButton Background="Transparent" BorderThickness="0" Opacity="0"/>
+                                <RepeatButton x:Name="IncreaseButton" Background="Transparent" BorderThickness="0" Opacity="0"/>
                             </Track.IncreaseRepeatButton>
                         </Track>
                     </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation" Value="Vertical">
+                            <Setter TargetName="PART_Track" Property="IsDirectionReversed" Value="True"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Vertical">
                 <Setter Property="Width" Value="10"/>
@@ -334,42 +341,5 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
         <Setter Property="Background" Value="{StaticResource Background.Default}"/>
         <Setter Property="Foreground" Value="{StaticResource Foreground.Primary}"/>
-    </Style>
-    <Style TargetType="Expander">
-        <Setter Property="Foreground" Value="{StaticResource Foreground.Emphasis}"/>
-        <Setter Property="Background" Value="{StaticResource Button.Pressed}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Expander">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="6"
-                            Padding="10">
-                        <StackPanel>
-                            <ToggleButton x:Name="HeaderSite"
-                                          Content="{TemplateBinding Header}"
-                                          IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
-                                          Background="Transparent"
-                                          BorderBrush="Transparent"
-                                          BorderThickness="0"
-                                          Foreground="{StaticResource Foreground.Emphasis}"
-                                          FontWeight="SemiBold"
-                                          HorizontalContentAlignment="Left"/>
-                            <ContentPresenter x:Name="ExpandSite"
-                                              Visibility="Collapsed"
-                                              Margin="0,10,0,0"/>
-                        </StackPanel>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsExpanded" Value="True">
-                            <Setter TargetName="ExpandSite" Property="Visibility" Value="Visible"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
 </ResourceDictionary>

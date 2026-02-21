@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordGeneratorWPF"
-                xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
         mc:Ignorable="d"
                 xmlns:controls="clr-namespace:PasswordGeneratorWPF.Views.Controls"
         Title="Passwort-Generator"
