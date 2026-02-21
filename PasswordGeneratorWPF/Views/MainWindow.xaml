@@ -60,6 +60,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Slider Grid.Row="0" Grid.Column="0"
+                                Style="{StaticResource DefaultSlider}"
                                 x:Name="passwordLengthSlider"
                                 Minimum="16" Maximum="64" TickFrequency="1"
                                 IsSnapToTickEnabled="True"
@@ -83,10 +84,10 @@
 
                 <GroupBox Header="Settings">
                     <UniformGrid Columns="2" Rows="3">
-                        <CheckBox x:Name="lowerCaseCheckbox" Content="a–z (Lower-Case)" IsChecked="True"/>
-                        <CheckBox x:Name="upperCaseCheckbox" Content="A–Z (Upper-Case)" IsChecked="True"/>
-                        <CheckBox x:Name="digitCheckbox"     Content="0–9 (Digits)"     IsChecked="True"/>
-                        <CheckBox x:Name="specialCharsCheckbox" Content="!@#… (Symbols)"/>
+                        <CheckBox x:Name="lowerCaseCheckbox" Content="a–z (Lower-Case)" IsChecked="True" Style="{StaticResource DefaultToggle}"/>
+                        <CheckBox x:Name="upperCaseCheckbox" Content="A–Z (Upper-Case)" IsChecked="True" Style="{StaticResource DefaultToggle}"/>
+                        <CheckBox x:Name="digitCheckbox"     Content="0–9 (Digits)"     IsChecked="True" Style="{StaticResource DefaultToggle}"/>
+                        <CheckBox x:Name="specialCharsCheckbox" Content="!@#… (Symbols)" Style="{StaticResource DefaultToggle}"/>
                     </UniformGrid>
                 </GroupBox>
 
