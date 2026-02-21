@@ -9,7 +9,7 @@
     </Style>
 
     <Style TargetType="GroupBox">
-        <Setter Property="Margin" Value="0,0,12,12"/>
+        <Setter Property="Margin" Value="0,0,0,12"/>
         <Setter Property="Padding" Value="12"/>
         <Setter Property="Background" Value="{StaticResource Button.Pressed}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
@@ -41,6 +41,7 @@
         <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Foreground" Value="{StaticResource Foreground.Primary}"/>
+        <Setter Property="SelectionBrush" Value="{StaticResource PrimaryButton.Default}"/>
     </Style>
 
     <Style TargetType="Button">
@@ -56,9 +57,10 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
-                  BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="{TemplateBinding BorderThickness}"
-                  CornerRadius="6" Padding="{TemplateBinding Padding}">
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6"
+                            Padding="{TemplateBinding Padding}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -71,81 +73,6 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" Value="0.6"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="DefaultToggle" TargetType="ToggleButton">
-        <Setter Property="Background" Value="{StaticResource Background.Default}"/>
-        <Setter Property="Foreground" Value="{StaticResource Foreground.Primary}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
-        <Setter Property="BorderThickness" Value="1"/>
-    </Style>
-
-    <Style x:Key="DefaultSlider" TargetType="Slider">
-        <Setter Property="Height" Value="24"/>
-        <Setter Property="MinWidth" Value="120"/>
-        <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
-        <Setter Property="Background" Value="{StaticResource Border.Default}"/>
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Slider">
-                    <Grid Margin="2" SnapsToDevicePixels="True">
-                        <!-- Track -->
-                        <Border x:Name="TrackBackground"
-                            Height="6"
-                            CornerRadius="3"
-                            VerticalAlignment="Center"
-                            Background="{TemplateBinding Background}"/>
-
-                        <Track x:Name="PART_Track"
-                           IsDirectionReversed="{TemplateBinding IsDirectionReversed}">
-                            <Track.DecreaseRepeatButton>
-                                <RepeatButton Command="Slider.DecreaseLarge"
-                                          Opacity="0"
-                                          Focusable="False"/>
-                            </Track.DecreaseRepeatButton>
-
-                            <Track.Thumb>
-                                <Thumb x:Name="Thumb" Width="16" Height="16" Focusable="False">
-                                    <Thumb.Template>
-                                        <ControlTemplate TargetType="Thumb">
-                                            <Ellipse x:Name="Knob"
-                                                 Fill="{StaticResource Background.Default}"
-                                                 Stroke="{TemplateBinding BorderBrush}"
-                                                 StrokeThickness="1"/>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="Knob" Property="Stroke" Value="{StaticResource Border.Hover}"/>
-                                                </Trigger>
-                                                <Trigger Property="IsDragging" Value="True">
-                                                    <Setter TargetName="Knob" Property="Stroke" Value="{StaticResource Border.Hover}"/>
-                                                </Trigger>
-                                                <Trigger Property="IsEnabled" Value="False">
-                                                    <Setter TargetName="Knob" Property="Opacity" Value="0.6"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Thumb.Template>
-                                </Thumb>
-                            </Track.Thumb>
-
-                            <Track.IncreaseRepeatButton>
-                                <RepeatButton Command="Slider.IncreaseLarge"
-                                          Opacity="0"
-                                          Focusable="False"/>
-                            </Track.IncreaseRepeatButton>
-                        </Track>
-                    </Grid>
-
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="TrackBackground" Property="Opacity" Value="0.5"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -169,22 +96,58 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="CheckBox">
+        <Setter Property="Margin" Value="0,3,12,3"/>
+        <Setter Property="Foreground" Value="{StaticResource Foreground.Primary}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="14" Height="14"
+                                VerticalAlignment="Center"
+                                Background="{StaticResource Background.Default}"
+                                BorderBrush="{StaticResource Border.Default}"
+                                BorderThickness="1"
+                                CornerRadius="2"
+                                Margin="0,0,6,0">
+                            <Path x:Name="CheckMark"
+                                  Data="M 2 7 L 5 10 L 11 3"
+                                  Stroke="{StaticResource Foreground.Emphasis}"
+                                  StrokeThickness="1.8"
+                                  Stretch="Fill"
+                                  Opacity="0"/>
+                        </Border>
+                        <ContentPresenter VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="CheckMark" Property="Opacity" Value="1"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{StaticResource Foreground.Emphasis}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.6"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Slider">
+        <Setter Property="Margin" Value="0,6,0,0"/>
+        <Setter Property="MinHeight" Value="22"/>
+    </Style>
+
     <Style TargetType="TextBox">
         <Setter Property="Margin" Value="0,0,6,0"/>
         <Setter Property="Padding" Value="6,4"/>
         <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
     </Style>
-
-    <Style TargetType="CheckBox">
-        <Setter Property="Margin" Value="0,2,0,2"/>
-    </Style>
-
-
-    <Style TargetType="Slider">
-        <Setter Property="Margin" Value="0,4,0,0"/>
-        <Setter Property="Background" Value="{StaticResource Border.Default}"/>
-    </Style>
+    
+    
 
     <Style TargetType="ProgressBar">
         <Setter Property="Height" Value="16"/>
@@ -197,5 +160,11 @@
     <Style TargetType="ListBox">
         <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{StaticResource Background.Default}"/>
+        <Setter Property="Foreground" Value="{StaticResource Foreground.Primary}"/>
+    </Style>
+
+    <Style TargetType="Expander">
+        <Setter Property="Foreground" Value="{StaticResource Foreground.Emphasis}"/>
     </Style>
 </ResourceDictionary>

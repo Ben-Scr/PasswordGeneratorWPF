@@ -21,6 +21,7 @@ namespace BenScr.PasswordGeneratorWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool _isUpdatingLength;
         public MainWindow()
         {
             InitializeComponent();
@@ -145,22 +146,29 @@ namespace BenScr.PasswordGeneratorWPF
 
         private void OnPasswordLengthSliderValueChanged(object sender, EventArgs args)
         {
-            passwordLengthTxt.Text = passwordLengthSlider.Value.ToString();
+            if (_isUpdatingLength)
+                return;
+
+            _isUpdatingLength = true;
+            passwordLengthTxt.Text = ((int)passwordLengthSlider.Value).ToString();
+            _isUpdatingLength = false;
         }
 
         private void OnPasswordLengthTextChanged(object sender, EventArgs args)
         {
-            if (int.TryParse(passwordLengthTxt.Text, out int length))
-            {
-                length = Math.Clamp(length, (int)passwordLengthSlider.Minimum, (int)passwordLengthSlider.Maximum);
-                passwordLengthTxt.Text = length.ToString();
-                passwordLengthSlider.Value = length;
-            }
-            else
-            {
-                passwordLengthSlider.Value = 0;
-                passwordLengthTxt.Text = "0";
-            }
+            if (_isUpdatingLength)
+                return;
+
+            if (!int.TryParse(passwordLengthTxt.Text, out int length))
+                return;
+
+            length = Math.Clamp(length, (int)passwordLengthSlider.Minimum, (int)passwordLengthSlider.Maximum);
+
+            _isUpdatingLength = true;
+            passwordLengthSlider.Value = length;
+            passwordLengthTxt.Text = length.ToString();
+            passwordLengthTxt.CaretIndex = passwordLengthTxt.Text.Length;
+            _isUpdatingLength = false;
         }
 
         private string GetStrengthInfo(string password)
