@@ -186,5 +186,10 @@ namespace BenScr.PasswordGeneratorWPF
         {
 
         }
+
+        private void passwordTxt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
