@@ -56,9 +56,9 @@
 
                         <Slider Grid.Row="0" Grid.Column="0"
                                 x:Name="passwordLengthSlider"
-                                Minimum="16" Maximum="64" TickFrequency="1"
+                                Minimum="16" Maximum="64" Value="16" TickFrequency="1"
                                 IsSnapToTickEnabled="True"
-                                Margin="5,10,10,5"/>
+                                Margin="5,8,10,6"/>
 
                         <TextBox Grid.Row="0" Grid.Column="1"
                                  Style="{StaticResource DefaultTextBox}" 
