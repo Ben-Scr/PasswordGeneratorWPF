@@ -3,7 +3,7 @@
 
     
     <Style x:Key="Caption" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource TextSubtleBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource Foreground.Emphasis}"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Margin" Value="0,0,0,4"/>
     </Style>
@@ -11,8 +11,8 @@
     <Style TargetType="GroupBox">
         <Setter Property="Margin" Value="0,0,12,12"/>
         <Setter Property="Padding" Value="10"/>
-        <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrushLight}"/>
+        <Setter Property="Background" Value="{StaticResource Background.Default}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -27,7 +27,7 @@
                     Padding="8,6">
                             <ContentPresenter ContentSource="Header" RecognizesAccessKey="True"/>
                         </Border>
-                        <Border Grid.Row="1" Background="White"
+                        <Border Grid.Row="1" Background="{StaticResource Background.Default}"
                     BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="0,0,6,6"
                     Padding="{TemplateBinding Padding}">
                             <ContentPresenter/>
@@ -38,12 +38,18 @@
         </Setter>
     </Style>
 
+    <Style TargetType="TextBox" x:Key="DefaultTextBox">
+        <Setter Property="Background" Value="{StaticResource Background.Default}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{StaticResource Foreground.Primary}"/>
+    </Style>
 
     <Style TargetType="Button">
         <Setter Property="Margin" Value="6,0,0,0"/>
         <Setter Property="Padding" Value="10,6"/>
-        <Setter Property="Background" Value="#FFF0F0F0"/>
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrushLight}"/>
+        <Setter Property="Background" Value="{StaticResource Background.Default}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
@@ -57,8 +63,8 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource ButtonHoverBrush}"/>
-                            <Setter Property="BorderBrush" Value="#FF85C1E9"/>
+                            <Setter Property="Background" Value="{StaticResource  Background.Default}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" Value="0.6"/>
@@ -72,7 +78,7 @@
     <Style TargetType="TextBox">
         <Setter Property="Margin" Value="0,0,6,0"/>
         <Setter Property="Padding" Value="6,4"/>
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrushLight}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
     </Style>
 
@@ -83,19 +89,19 @@
 
     <Style TargetType="Slider">
         <Setter Property="Margin" Value="0,4,0,0"/>
-        <Setter Property="Background" Value="{StaticResource BorderBrushLight}"/>
+        <Setter Property="Background" Value="{StaticResource Border.Default}"/>
     </Style>
 
     <Style TargetType="ProgressBar">
         <Setter Property="Height" Value="16"/>
         <Setter Property="Foreground" Value="{StaticResource StrengthGradient}"/>
-        <Setter Property="Background" Value="#FFEDEDED"/>
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrushLight}"/>
+        <Setter Property="Background" Value="{StaticResource Background.Default}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
     </Style>
 
     <Style TargetType="ListBox">
-        <Setter Property="BorderBrush" Value="{StaticResource BorderBrushLight}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
     </Style>
 </ResourceDictionary>

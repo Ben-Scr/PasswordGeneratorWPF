@@ -10,7 +10,7 @@
         MinHeight="500" MinWidth="760"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize"
-        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Icon="/Views/icon.png">
+        Background="{StaticResource Background.Default}" Icon="/Views/icon.png">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -64,6 +64,7 @@
                                 Margin="5,10,10,5"/>
 
                         <TextBox Grid.Row="0" Grid.Column="1"
+                                 Style="{StaticResource DefaultTextBox}" 
                                  x:Name="passwordLengthTxt"
                                  Text="16"
                                  Width="60"
@@ -99,10 +100,10 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource Caption}" Text="Include"/>
-                        <TextBox   Grid.Row="0" Grid.Column="1" Height="20" x:Name="includeCharsTxt" Margin="5,0,6,0"/>
+                        <TextBox  Style="{StaticResource DefaultTextBox}" Grid.Row="0" Grid.Column="1" Height="20" x:Name="includeCharsTxt" Margin="5,0,6,0"/>
 
                         <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource Caption}" Text="Exclude"/>
-                        <TextBox   Grid.Row="1" Grid.Column="1" Height="20"  x:Name="excludeCharsTxt" Margin="5,0,6,0"/>
+                        <TextBox Style="{StaticResource DefaultTextBox}"    Grid.Row="1" Grid.Column="1" Height="20"  x:Name="excludeCharsTxt" Margin="5,0,6,0"/>
                     </Grid>
                 </GroupBox>
             </StackPanel>
@@ -117,6 +118,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBox Grid.Column="0" x:Name="passwordTxt"
+                                 Style="{StaticResource DefaultTextBox}" 
                      MaxLength="1000"
                      MinWidth="200"
                      HorizontalScrollBarVisibility="Auto"
@@ -146,6 +148,7 @@
                          Margin="0,0,0,8"/>
 
                         <TextBox Grid.Row="2"
+                                 Style="{StaticResource DefaultTextBox}" 
                      x:Name="strengthInfoTextbox"
                      IsReadOnly="True"
                      VerticalScrollBarVisibility="Auto"
@@ -163,6 +166,9 @@
 
                         <ListBox Grid.Row="0"
                      x:Name="passwordHistory"
+                                 Background="{StaticResource Background.Default}"
+                                 BorderBrush="{StaticResource Border.Default}"
+                                 BorderThickness="1"
                      FontFamily="Consolas"
                                  Height="25"
                      ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="0,0,10,0">
