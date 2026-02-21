@@ -24,10 +24,6 @@
     </Window.Resources>
 
     <Grid Margin="16">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="197*"/>
-            <ColumnDefinition Width="671*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -42,8 +38,8 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" MinWidth="260"/>
-                <ColumnDefinition Width="3*" MinWidth="340"/>
+                <ColumnDefinition Width="2*" MinWidth="270"/>
+                <ColumnDefinition Width="3*" MinWidth="360"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
@@ -134,7 +130,7 @@
                                  Margin="0,0,6,0"/>
 
                         <Button Grid.Column="1" x:Name="copyButton" Content="Copy"/>
-                        <Button Grid.Column="2" x:Name="addButton" Content="Add"/>
+                        <Button Grid.Column="2" x:Name="addButton" Content="Save" ToolTip="Save password to history"/>
                     </Grid>
                 </GroupBox>
 
@@ -164,11 +160,13 @@
             </Grid>
 
             <Expander Grid.Column="2"
-                      Header="History"
+                      x:Name="historyExpander"
+                      Header="Password History ▸"
                       ExpandDirection="Left"
                       IsExpanded="False"
                       VerticalAlignment="Stretch"
-                      HorizontalAlignment="Right">
+                      HorizontalAlignment="Right"
+                      Margin="0,0,0,0">
                 <Border Width="280"
                         Margin="8,0,0,0"
                         Padding="12"
@@ -182,11 +180,24 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <ListBox Grid.Row="0"
-                                 x:Name="passwordHistory"
-                                 FontFamily="Consolas"
-                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                 MinHeight="220"/>
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Grid.Row="0"
+                                    x:Name="saveCurrentToHistoryButton"
+                                    Content="Save current password"
+                                    ToolTip="Adds the generated password to the history"
+                                    Margin="0,0,0,8"/>
+
+                            <ListBox Grid.Row="1"
+                                     x:Name="passwordHistory"
+                                     FontFamily="Consolas"
+                                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                     MinHeight="200"/>
+                        </Grid>
 
                         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
                             <Button x:Name="clearHistoryButton" Content="Clear History"/>

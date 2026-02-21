@@ -39,8 +39,11 @@ namespace BenScr.PasswordGeneratorWPF
             clearHistoryButton.Click += OnClickClearHistoryButton;
             closeButton.Click += OnClickCloseButton;
             addButton.Click += OnClickAddButton;
+            saveCurrentToHistoryButton.Click += OnClickAddButton;
             passwordTxt.TextChanged += OnPasswordTextChanged;
             saveToFileButton.Click += OnSaveToFileButtonClick;
+            historyExpander.Expanded += OnHistoryExpanderChanged;
+            historyExpander.Collapsed += OnHistoryExpanderChanged;
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
@@ -112,6 +115,12 @@ namespace BenScr.PasswordGeneratorWPF
             string password = passwordTxt.Text;
             if (string.IsNullOrEmpty(password) || passwordHistory.Items.Contains(password)) return;
             passwordHistory.Items.Add(password);
+        }
+        private void OnHistoryExpanderChanged(object sender, RoutedEventArgs args)
+        {
+            historyExpander.Header = historyExpander.IsExpanded
+                ? "Password History ◂"
+                : "Password History ▸";
         }
 
         private void OnClickCloseButton(object sender, EventArgs args)
