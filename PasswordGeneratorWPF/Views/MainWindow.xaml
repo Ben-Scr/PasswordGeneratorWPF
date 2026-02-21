@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:PasswordGeneratorWPF"
         mc:Ignorable="d"
         Title="Passwort-Generator"
-        Height="500" Width="900"
-        MinHeight="500" MinWidth="760"
+        Height="550" Width="900"
+        MinHeight="550" MinWidth="760"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize"
         Background="{StaticResource Background.Default}" Icon="/Views/icon.png"
@@ -66,6 +66,7 @@
                                  Text="16"
                                  Width="60"
                                  HorizontalContentAlignment="Center"
+                                 VerticalContentAlignment="Center"
                                  ToolTip="Password length"
                                  Margin="0,4,6,0"/>
 
@@ -95,10 +96,10 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource Caption}" Text="Include"/>
+                        <TextBlock Padding="5" Grid.Row="0" Grid.Column="0" Style="{StaticResource Caption}" Text="Include"/>
                         <TextBox Grid.Row="0" Grid.Column="1" x:Name="includeCharsTxt" Style="{StaticResource DefaultTextBox}" Height="24" Margin="5,0,0,0"/>
 
-                        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource Caption}" Text="Exclude"/>
+                        <TextBlock Padding="5" Grid.Row="1" Grid.Column="0" Style="{StaticResource Caption}" Text="Exclude"/>
                         <TextBox Grid.Row="1" Grid.Column="1" x:Name="excludeCharsTxt" Style="{StaticResource DefaultTextBox}" Height="24" Margin="5,0,0,0"/>
                     </Grid>
                 </GroupBox>
