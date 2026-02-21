@@ -40,7 +40,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" MinWidth="270"/>
                 <ColumnDefinition Width="3*" MinWidth="360"/>
-                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Margin="0,0,12,0">
@@ -159,14 +158,18 @@
                 </GroupBox>
             </Grid>
 
-            <Expander Grid.Column="2"
+            <Expander Grid.Column="1"
+                      Panel.ZIndex="10"
                       x:Name="historyExpander"
                       Header="Password History ▸"
                       ExpandDirection="Left"
                       IsExpanded="False"
-                      VerticalAlignment="Stretch"
+                      VerticalAlignment="Top"
                       HorizontalAlignment="Right"
-                      Margin="0,0,0,0">
+                      Margin="0,0,0,0"
+                      BorderBrush="{StaticResource Border.Default}"
+                      BorderThickness="1"
+                      Background="{StaticResource Background.Default}">
                 <Border Width="280"
                         Margin="8,0,0,0"
                         Padding="12"
