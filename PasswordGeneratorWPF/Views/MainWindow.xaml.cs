@@ -80,21 +80,14 @@ namespace BenScr.PasswordGeneratorWPF
 
         private void OnSaveToFileButtonClick(object sender, EventArgs args)
         {
+            if(passwordHistory.Items.Count == 0) return;
+
             string[] passwords = new string[passwordHistory.Items.Count];
 
-            if (passwords.Length == 0) return;
-
             for(int i = 0; i < passwords.Length; i++)
-            {
-                passwords[i] = passwordHistory.Items[i].ToString();
-            }
+                passwords[i] = passwordHistory.Items[i].ToString() ?? "Null";
 
-            string mainPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"BenScr", "PasswordManager");
-            string filename = $"{passwords.Length} {(passwords.Length == 1 ? "Item" : "Items")} long password history from {DateTime.Now.ToString().Replace(":", "-")}.txt";
-
-            Directory.CreateDirectory(mainPath);
-            File.WriteAllLines(System.IO.Path.Combine(mainPath, filename), passwords);
-            Process.Start("explorer.exe", mainPath);
+            Utility.SavePasswordHistory(passwords);
         }
 
         private void OnPasswordTextChanged(object sender, EventArgs args)
