@@ -3,43 +3,41 @@
 
     
     <Style x:Key="Caption" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource Foreground.Emphasis}"/>
+        <Setter Property="Foreground" Value="{StaticResource Foreground.Secondary}"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Margin" Value="0,0,0,4"/>
     </Style>
 
     <Style TargetType="GroupBox">
         <Setter Property="Margin" Value="0,0,12,12"/>
-        <Setter Property="Padding" Value="10"/>
-        <Setter Property="Background" Value="{StaticResource Background.Default}"/>
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="Background" Value="{StaticResource Button.Pressed}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GroupBox">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Border Grid.Row="0" Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="6,6,0,0"
-                    Padding="8,6">
-                            <ContentPresenter ContentSource="Header" RecognizesAccessKey="True"/>
-                        </Border>
-                        <Border Grid.Row="1" Background="{StaticResource Background.Default}"
-                    BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="0,0,6,6"
-                    Padding="{TemplateBinding Padding}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6"
+                            Padding="{TemplateBinding Padding}">
+                        <StackPanel>
+                            <ContentPresenter ContentSource="Header"
+                                              RecognizesAccessKey="True"
+                                              Margin="0,0,0,10"
+                                              TextElement.FontWeight="SemiBold"
+                                              TextElement.Foreground="{StaticResource Foreground.Emphasis}"/>
                             <ContentPresenter/>
-                        </Border>
-                    </Grid>
+                        </StackPanel>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style TargetType="TextBox" x:Key="DefaultTextBox">
-        <Setter Property="Background" Value="{StaticResource Background.Default}"/>
+        <Setter Property="Background" Value="{StaticResource Button.Default}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Foreground" Value="{StaticResource Foreground.Primary}"/>
@@ -47,10 +45,12 @@
 
     <Style TargetType="Button">
         <Setter Property="Margin" Value="6,0,0,0"/>
-        <Setter Property="Padding" Value="10,6"/>
-        <Setter Property="Background" Value="{StaticResource Background.Default}"/>
+        <Setter Property="Padding" Value="12,6"/>
+        <Setter Property="Background" Value="{StaticResource Button.Default}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{StaticResource Foreground.Primary}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -63,8 +63,11 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource  Background.Default}"/>
+                            <Setter Property="Background" Value="{StaticResource Button.Hover}"/>
                             <Setter Property="BorderBrush" Value="{StaticResource Border.Default}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource Button.Pressed}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" Value="0.6"/>
@@ -73,6 +76,22 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Background" Value="{StaticResource PrimaryButton.Default}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryButton.Default}"/>
+        <Setter Property="Foreground" Value="{StaticResource Foreground.Emphasis}"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource PrimaryButton.Hover}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryButton.Hover}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource PrimaryButton.Pressed}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryButton.Pressed}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="TextBox">
