@@ -7,7 +7,7 @@ An Advanced C# Password Generator for Windows.
 - Password safety rating
 - Saving multiple passwords into a text file locally
 
-## Screenshots
+## Preview
 <p align="center">
 <img src="Documentation/Preview_1.png" width="45%" alt="Preview 1">
 <img src="Documentation/Preview_2.png" width="45%" alt="Preview 2">
