@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PasswordGeneratorWPF"
         xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
         mc:Ignorable="d"
-                xmlns:controls="clr-namespace:PasswordGeneratorWPF.Views.Controls"
+        xmlns:controls="clr-namespace:PasswordGeneratorWPF.Views.Controls"
         Title="Passwort-Generator"
         Height="550" Width="900"
         MinHeight="550" MinWidth="760"
